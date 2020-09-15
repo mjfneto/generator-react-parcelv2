@@ -1,0 +1,21 @@
+{
+  "name": "<%= name %>",
+  "version": "1.0.0",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "browser": "dist/browser/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2",
+    "parcel": "next"
+  },
+  "dependencies": {
+    "@babel/preset-typescript": "^7.10.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
