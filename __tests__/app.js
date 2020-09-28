@@ -41,6 +41,7 @@ describe('generator-react-parcelv2:app', () => {
       `${cwd}.env`,
       `${cwd}.prettierrc.json`,
       `${cwd}tsconfig.json`,
+      `${cwd}parcel.d.ts`,
     ]);
   });
 });

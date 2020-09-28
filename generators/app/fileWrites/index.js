@@ -59,6 +59,11 @@ module.exports = {
       this.templatePath('tsconfig.ejs'),
       this.destinationPath(appName, 'tsconfig.json'),
     );
+
+    this.fs.copyTpl(
+      this.templatePath('parcel.d.ts'),
+      this.destinationPath(appName, 'parcel.d.ts'),
+    );
   },
   writeAssets() {
     const { appName } = this.answers;
