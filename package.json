@@ -8,7 +8,7 @@
     "generators"
   ],
   "scripts": {
-    "test": "jest --watch-All"
+    "test": "jest"
   },
   "keywords": [
     "yeoman-generator"
