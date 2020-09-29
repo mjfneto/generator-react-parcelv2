@@ -2,7 +2,7 @@
   "name": "generator-react-parcelv2",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A relatively simple, (no) config, React projects generator",
+  "description": "A relatively simple, (no) config, generator for React projects bundled with Parcel v2",
   "main": "index.js",
   "files": [
     "generators"
