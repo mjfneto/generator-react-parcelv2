@@ -1,6 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-
 module.exports = {
   writePckg() {
     const { appName } = this.answers;
@@ -21,13 +18,13 @@ module.exports = {
     };
 
     this.fs.copyTpl(
-      this.templatePath('src/index.ejs'),
+      this.templatePath('src/index-html.ejs'),
       this.destinationPath(appName, 'src/index.html'),
       app,
     );
 
     this.fs.copyTpl(
-      this.templatePath('src/index.js'),
+      this.templatePath('src/index.ejs'),
       this.destinationPath(appName, 'src/index.tsx'),
     );
 
