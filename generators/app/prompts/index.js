@@ -12,4 +12,10 @@ module.exports = [
     required: true,
     message: 'Yarn?',
   },
+  {
+    type: 'confirm',
+    name: 'editorconfig',
+    required: true,
+    message: 'Include editor config? https://editorconfig.org/',
+  },
 ];

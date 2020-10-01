@@ -35,7 +35,7 @@ module.exports = {
     );
   },
   writeConfig() {
-    const { appName } = this.answers;
+    const { appName, editorconfig } = this.answers;
 
     this.fs.copyTpl(
       this.templatePath('.env'),
@@ -46,6 +46,13 @@ module.exports = {
       this.templatePath('.babelrc'),
       this.destinationPath(appName, '.babelrc'),
     );
+
+    if (editorconfig) {
+      this.fs.copyTpl(
+        this.templatePath('.editorconfig'),
+        this.destinationPath(appName, '.editorconfig'),
+      );
+    }
 
     this.fs.copyTpl(
       this.templatePath('.prettierrc.json'),

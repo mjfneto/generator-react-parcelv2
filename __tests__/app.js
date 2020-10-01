@@ -5,10 +5,12 @@ const path = require('path');
 const appName = 'bin2dec';
 const cwd = `${appName}/`;
 const generator = path.join(__dirname, '../generators/app');
+const truePrompts = { appName, yarn: true, editorconfig: true };
+const falsePrompts = { appName, yarn: false, editorconfig: false };
 
 describe('generator-react-parcelv2:app', () => {
   it('creates a package.json file with dependencies described', async () => {
-    await helpers.run(generator).withPrompts({ appName, yarn: true });
+    await helpers.run(generator).withPrompts(truePrompts);
 
     assert.jsonFileContent(`${cwd}package.json`, {
       name: appName,
@@ -24,7 +26,7 @@ describe('generator-react-parcelv2:app', () => {
   });
 
   it('creates Parcel entry files', async () => {
-    await helpers.run(generator).withPrompts({ appName, yarn: true });
+    await helpers.run(generator).withPrompts(truePrompts);
 
     assert.fileContent([
       [`${cwd}src/index.html`, new RegExp(`<title>${appName}<\/title>`, 'gm')],
@@ -33,15 +35,35 @@ describe('generator-react-parcelv2:app', () => {
     ]);
   });
 
-  it('creates config files', async () => {
-    await helpers.run(generator).withPrompts({ appName, yarn: true });
+  it('creates config files, including: editorconfig', async () => {
+    await helpers.run(generator).withPrompts(truePrompts);
 
-    assert.file([
-      `${cwd}.babelrc`,
-      `${cwd}.env`,
-      `${cwd}.prettierrc.json`,
-      `${cwd}tsconfig.json`,
-      `${cwd}parcel.d.ts`,
-    ]);
+    const files = [
+      '.babelrc',
+      '.env',
+      '.prettierrc.json',
+      '.editorconfig',
+      'tsconfig.json',
+      'parcel.d.ts',
+    ];
+
+    assert.file(files.map(f => cwd + f));
+  });
+
+  it('creates config files, excluding: editorconfig', async () => {
+    await helpers.run(generator).withPrompts(falsePrompts);
+
+    const files = [
+      '.babelrc',
+      '.env',
+      '.prettierrc.json',
+      'tsconfig.json',
+      'parcel.d.ts',
+    ];
+
+    const excluded = ['.editorconfig'];
+
+    assert.file(files.map(f => cwd + f));
+    assert.noFile(excluded.map(f => cwd + f));
   });
 });
